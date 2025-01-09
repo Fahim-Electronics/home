@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Account | Fahim Electronics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .signup-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #f0a500;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background-color: #d78800;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            color: #f0a500;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <h2>Create an Account</h2>
+        <form id="signup-form">
+            <input type="text" class="input-field" id="username" placeholder="Username" required><br>
+            <input type="email" class="input-field" id="email" placeholder="Email Address" required><br>
+            <input type="password" class="input-field" id="password" placeholder="Password" required><br>
+            <input type="password" class="input-field" id="confirm_password" placeholder="Confirm Password" required><br>
+            <button type="submit" class="submit-btn">Create Account</button>
+        </form>
+        <div class="footer-links">
+            <a href="login.html">Already have an account? Login</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            const accountData = { username, email, password };
+
+            fetch('/create-account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(accountData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Account created successfully');
+                    window.location.href = 'login.html';
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => alert('An error occurred: ' + error.message));
+        });
+    </script>
+</body>
+</html>

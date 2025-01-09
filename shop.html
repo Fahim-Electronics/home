@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop | Fahim Electronics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Reset styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Roboto', sans-serif; background-color: #f4f4f4; color: #333; overflow-x: hidden; }
+
+        /* Header Section */
+        header { background-color: #333; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; color: #f0a500; }
+        nav ul { display: flex; gap: 30px; }
+        nav ul li { list-style: none; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 500; }
+        .cart-icon { font-size: 1.5rem; color: rgb(255, 255, 255); }
+
+        /* Product Section */
+        .products { display: flex; justify-content: space-around; margin: 50px 0; flex-wrap: wrap; }
+        .product { background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 25%; text-align: center; margin: 15px 0; }
+        .product img { max-width: 100%; border-radius: 8px; }
+        .product h3 { font-size: 1.3rem; margin-top: 15px; }
+        .product p { font-size: 1rem; color: #555; }
+        .product button { background-color: #f0a500; color: white; border: none; padding: 10px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold; transition: background-color 0.3s, transform 0.3s ease; }
+        .product button:hover { background-color: #d78800; transform: scale(1.05); }
+        .product .info-btn { background-color: #3498db; color: white; border: none; padding: 10px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; transition: background-color 0.3s, transform 0.3s ease; }
+        .product .info-btn:hover { background-color: #2980b9; transform: scale(1.05); }
+
+        /* Modal Section */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; }
+        .modal-content { background-color: white; padding: 30px; border-radius: 8px; max-width: 600px; width: 80%; text-align: center; }
+        .modal-content img { width: 100%; border-radius: 8px; }
+        .modal-content h3 { font-size: 1.5rem; margin-top: 20px; }
+        .modal-content p { font-size: 1.2rem; color: #555; margin-bottom: 20px; }
+        .modal-content button { background-color: #f0a500; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s, transform 0.3s ease; }
+        .modal-content button:hover { background-color: #d78800; transform: scale(1.05); }
+        .close-btn { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; color: #333; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Fahim Electronics</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="newacc.html">Create Account</a></li>
+            </ul>
+        </nav>
+        <i class="fas fa-shopping-cart cart-icon"></i>
+    </header>
+
+    <!-- Product Section -->
+    <section class="products">
+        <div class="product">
+            <img src="data:image/jpeg;base64,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" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>Best quality at an affordable price</p>
+            <button>Add to Cart</button>
+            <button class="info-btn" onclick="openModal('modal1')">More Info</button>
+        </div>
+        <div class="product">
+            <img src="data:image/jpeg;base64,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" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>Top-rated electronics for you</p>
+            <button>Add to Cart</button>
+            <button class="info-btn" onclick="openModal('modal2')">More Info</button>
+        </div>
+        <div class="product">
+            <img src="data:image/jpeg;base64,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" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>Latest features and technology</p>
+            <button>Add to Cart</button>
+            <button class="info-btn" onclick="openModal('modal3')">More Info</button>
+        </div>
+        <div class="product">
+            <img src="data:image/jpeg;base64,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" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>Premium electronics at unbeatable prices</p>
+            <button>Add to Cart</button>
+            <button class="info-btn" onclick="openModal('modal4')">More Info</button>
+        </div>
+    </section>
+
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
+            <img src="data:image/jpeg;base64,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" alt="Product 1">
+            <h3>Product 1</h3>
+            <p>This is a detailed description of Product 1. It has amazing features, a sleek design, and an unbeatable price.</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw0NDQ0ODQ0PDQ0NDQ0ODQ0NDxINDQ0NGBIWFhYRExMYHCggGBolGxYTITEiJSkrLy4uGCAzODMsNygtLisBCgoKDg0OGA8PGjYdHR0tLS0tNy03Ny4tKy0tLS0rNysrLS0wNystKys3LSsrKy0rLSs3KysrKysrKysrKysrK//AABEIAOEA4QMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAQMEBQYCB//EAD8QAQABAwEEBwMHCgcAAAAAAAABAgMREgQGIVEUFTFUkZLRBRMWJEFhcXOBsSJCUlNyk5ShsrMjMkNiosHh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAL/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEgH/2gAMAwEAAhEDEQA/APuIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANPtdddyqeNVEUzVTEU11RnFUxmcY5PFvXT+fVP7VVU/jLMomJz+3c/ql7Bh6rnOfGr1NdfOfNV6sxOQYWu5znxq9TVXznj/uq9WdlOQYGu5znxq9TXc5z41erPynINfquc58avUiu5znxq9Wx1GoGu13Oc+NXqarnOfGr1bHUaga7Vc5z41epFVznPjV6tjqNQNdquc58avUiquIxmfNVM+OWx1GoGu1V8581Uf8AZruc58avVsMmQa/Vc5z5qvU1XOc+NXqz5lGQYOuvnPjV6muvnPjV6s3IDAr11RjVVH0xVVE/ii1VXama9Vdemmfyaq6pieH0yz1d7Gir9mr8AbAIAAAAAanZqs0z9pejwuVQu1MXZp4V/b7T/erXZBZqNSvJkFmpOpVkyC3Ua1WTILdZrVZMgt1pirKnKaa8Z58wWzVhGt4qriY8Puecgt1mtVkyC3WalWTILdRqVZMgs1GpXkyCzUp22vFm7PK1cn/jL1lj+0J/wL/2N3+iQbujsj6oSAAAAANNapn8v7baP7tb3pl4te0Nlo103L9umum9f1U1TiY/xap/DDFu+0KfezNG27NFrNM00T/mxiMxM/Xnx+gGbpk0yxtl9o2aap97ttiunTGIjFMxXmcz9WMeDK602PvFrzAjTJplPWmx95teaDrTY+82vNAI0yaZT1psfebXmg602PvFrzQCNMmmU9abH3m15oOtNj7za80AjTJplPWmx95teaDrTY+82vNAI0yaZT1psfeLXmg602PvFrzQCNMmmU9abH3i15jrTY+8WvNAI0yaZT1psfebXmg602PvNrzQCNMmmU9abH3i15jrTYu8WvNAI0yaZT1psXeLXmeLntPZJxp2u1Tz4xVkHrTKnbaZ9zd+yuf0y8XNvsTHDbbWePzxT83CeEF32hs3Rq6KtqtXbvuaqZqjFHvK9MxwpjszPzA34AAAAAOL9tbtTVtFy5F2ufe1VXMRVVRFOZ7MRP8ANzu8uy9XbN0iv3t2mLlFuaaLtVMxNXZOZfTNuu00RFVXZnGWi9vxb2vZqrNM06prtV05iKomaa4qxiecRMfemcVWvk0b1Udz2395UsneejET0TbOOeHvasxx+d0c7rXsziqcZnteo3XvcyMK1zdG81E5+S7ZGImeN2eP0Qj4no7ptv7yXTxuve5pjde9zIwrXNVby24x8l2ycxE8Lkz2xnBG8tuYmei7bwxw1zmc8uLpvha7zT8K3eZGFa5f4lt9027zz6vVW8luJmOi7bOJmMxXOJ+ntdP8KXeafhO5+kRhWuZt7xWqppidn2ymKqtMzNc4pjh+VPHs4/yTa9v26pq+T7ZTporrzVXMROmM4jj2y6T4Tu/pPdnda5TVTVMxMRMTiYiYkjCtcrO8VHD5Jt3HszXV6k7xURM/JdtnHz66sfi66vdacTFOqM8vwxhRVutdz2kYVrmPiKjET0Xbe2Yxrqz83qU7xUTOOi7bH0zXVh007r3ubzO7F4jCtcz8S0d027zVJq3kojHyTbZzGeFdXDjPCXRzu1eRO7d4jCtc7Z3iprrinom2U6pxqquVRTH1yz+saf1V7+IbGd3L3JE7u3uRGFa13WNP6q9/Ef8AqJ9p0x/pXv4hn1bu3uTxO7l8jCtW7s0R7SpvVURete4rpoq1Xqqs1TGeGG/2Tdaa7lMTeuU8c51V1xw49kzxZe61mjY7NyK9MV3bsXJiKYp7KKaeOPppmfvdJsF+m5MzT+bHGfrIwrWaApIAAACKoieExmOU8XiqxRMY0xH3QsAY3Q6TodLJAY3Q6U9EpZADH6JSdFpZACjotJ0aF4CjosHRqV4Cjo0HRaV4DH6LSdEpZADG6HSdDpZIDF6FQdBoZQDF6DQjoFDLAU29nopjGmJ+uIW00xHZER9UYSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//Z" alt="Product 2">
+            <h3>Product 2</h3>
+            <p>This is a detailed description of Product 2. It is highly rated and provides excellent performance.</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
+            <img src="data:image/jpeg;base64,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" alt="Product 3">
+            <h3>Product 3</h3>
+            <p>This is a detailed description of Product 3. It is packed with the latest features and technology.</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
+            <img src="data:image/jpeg;base64,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" alt="Product 4">
+            <h3>Product 4</h3>
+            <p>This is a detailed description of Product 4. Premium quality electronics at an affordable price.</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+    </script>
+</body>
+</html>
